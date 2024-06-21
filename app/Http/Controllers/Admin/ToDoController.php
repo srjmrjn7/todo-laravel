@@ -9,6 +9,11 @@ use File;
 
 class ToDoController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(ToDo::class, 'todo');
+    }
+
     /**
      * Display a listing of the resource.
      */

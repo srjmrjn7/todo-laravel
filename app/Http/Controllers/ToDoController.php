@@ -8,6 +8,11 @@ use File;
 
 class ToDoController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(ToDo::class, 'todo');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -61,9 +66,6 @@ class ToDoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        if($todo->user_id != \Auth::user()->id) {
-            abort(404);
-        }
         $data = array(
             'todo' => $todo
         );
@@ -75,9 +77,6 @@ class ToDoController extends Controller
      */
     public function update(Request $request, ToDo $todo)
     {
-        if($todo->user_id != \Auth::user()->id) {
-            abort(404);
-        }
         $request->validate([
             'title' => ['required', 'max:100'],
             'photo' => ['image', 'max:2048']
@@ -104,9 +103,6 @@ class ToDoController extends Controller
      */
     public function destroy(ToDo $todo)
     {
-        if($todo->user_id != \Auth::user()->id) {
-            abort(404);
-        }
         if(File::exists(public_path($todo->photo))) {
             File::delete(public_path($todo->photo));
         }
