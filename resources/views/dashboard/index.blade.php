@@ -31,7 +31,7 @@
                         <th scope="row">{{$todo->id}}</th>
                         <td>{{$todo->title}}</td>
                         <td><img src="{{asset('storage/' . $todo->photo)}}" class="todo-list-image"></td>
-                        <td>{{$todo->status ? 'finished' : 'not finished'}}</td>
+                        <td><livewire:to-do.status-to-do :todo="$todo" /></td>
                         <td>
                             <a href="{{route('todo.edit', $todo->id)}}">Update</a>
                             <form action="{{route('todo.destroy', $todo->id)}}" method="POST">
