@@ -33,9 +33,9 @@ Route::post('register',[AuthController::class, 'postRegister'])->name('register.
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 //dashboard
-Route::group(['middleware' => ['auth', 'role:user'], 'prefix' => 'user', 'as' => 'user.'], function() {
+Route::group(['middleware' => 'auth'], function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('todo', ToDoController::class)->except(['index', 'show']);
+    Route::resource('todo', ToDoController::class)->only(['create', 'edit', 'destroy']);
 });
 
 

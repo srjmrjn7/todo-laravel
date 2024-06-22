@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">
             <h3>{{ __('To Do List') }}</h3>
-            <a href="{{route(Auth::user()->role . '.todo.create')}}">Create New</a>
+            <a href="{{route('todo.create')}}">Create New</a>
         </div>
 
         <div class="card-body">
@@ -30,11 +30,11 @@
                     <tr>
                         <th scope="row">{{$todo->id}}</th>
                         <td>{{$todo->title}}</td>
-                        <td><img src="{{asset($todo->photo)}}" class="todo-list-image"></td>
+                        <td><img src="{{asset('storage/' . $todo->photo)}}" class="todo-list-image"></td>
                         <td>{{$todo->status ? 'finished' : 'not finished'}}</td>
                         <td>
-                            <a href="{{route(Auth::user()->role . '.todo.edit', $todo->id)}}">Update</a>
-                            <form action="{{route(Auth::user()->role . '.todo.destroy', $todo->id)}}" method="POST">
+                            <a href="{{route('todo.edit', $todo->id)}}">Update</a>
+                            <form action="{{route('todo.destroy', $todo->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="dropdown-item del">Delete</button>

@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request) {
         $data = array(
-            'todos' => $request->user()->todos()->paginate(10)
+            'todos' => $request->user()->role === 'admin' ? ToDo::latest()->paginate(10) : $request->user()->todos()->latest()->paginate(10)
         );
         return view('dashboard.index', $data);
     }

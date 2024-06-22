@@ -35,7 +35,7 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
-        return redirect()->intended(route(\Auth::user()->role . '.dashboard'))->with('success', 'You have Successfully logged in');
+        return redirect()->intended(route('dashboard'))->with('success', 'You have Successfully logged in');
     }
 
     public function postRegister(Request $request)
@@ -47,7 +47,7 @@ class AuthController extends Controller
         ]);
         $data = $request->all();
         Auth::login($this->create($data));
-        return redirect()->route(\Auth::user()->role . '.dashboard')->with('success', 'Great! You have Successfully registered');
+        return redirect()->route('dashboard')->with('success', 'Great! You have Successfully registered');
     }
 
     public function dashboard()

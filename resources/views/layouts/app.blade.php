@@ -8,6 +8,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -24,7 +25,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route(Auth::user()->role . '.dashboard') }}">
+                    <a class="navbar-brand" href="{{ route('dashboard') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -71,5 +72,6 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    @livewireScripts
 </body>
 </html>

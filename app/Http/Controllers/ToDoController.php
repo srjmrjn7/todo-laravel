@@ -34,23 +34,7 @@ class ToDoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required', 'max:100'],
-            'photo' => ['image', 'max:2048']
-        ]);
-
-        $user = \Auth::user();
-        $todo = $request->only(['title', 'email']);
-
-        if($request->hasFile('photo')) {
-            $photo = $request->photo;
-            $file_name = rand() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('uploads/'), $file_name);
-            $todo['photo'] = '/uploads/' . $file_name;
-        }
-
-        $user->todos()->create($todo);
-        return redirect()->back()->with('success', 'To Do Created!');
+        //
     }
 
     /**
@@ -77,25 +61,7 @@ class ToDoController extends Controller
      */
     public function update(Request $request, ToDo $todo)
     {
-        $request->validate([
-            'title' => ['required', 'max:100'],
-            'photo' => ['image', 'max:2048']
-        ]);
-
-        $utodo = $request->only(['title', 'email']);
-
-        if($request->hasFile('photo')) {
-            if(File::exists(public_path($todo->photo))) {
-                File::delete(public_path($todo->photo));
-            }
-            $photo = $request->photo;
-            $file_name = rand() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('uploads/'), $file_name);
-            $utodo['photo'] = '/uploads/' . $file_name;
-        }
-
-        $todo->update($utodo);
-        return redirect()->back()->with('success', 'To Do Created!');
+        //
     }
 
     /**

@@ -26,7 +26,7 @@ class ToDoPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ToDo $toDo): bool
+    public function view(User $user, ToDo $todo): bool
     {
         return $user->id === $todo->user_id;
     }
@@ -42,7 +42,7 @@ class ToDoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ToDo $toDo): bool
+    public function update(User $user, ToDo $todo): bool
     {
         return $user->id === $todo->user_id;
     }
@@ -50,7 +50,7 @@ class ToDoPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ToDo $toDo): bool
+    public function delete(User $user, ToDo $todo): bool
     {
         return $user->id === $todo->user_id;
     }
@@ -58,7 +58,7 @@ class ToDoPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ToDo $toDo): bool
+    public function restore(User $user, ToDo $todo): bool
     {
         return $user->id === $todo->user_id;
     }
@@ -66,7 +66,7 @@ class ToDoPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ToDo $toDo): bool
+    public function forceDelete(User $user, ToDo $todo): bool
     {
         return $user->id === $todo->user_id;
     }
